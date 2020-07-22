@@ -9,12 +9,12 @@ import co.com.cliente.ProgramacionPago.julian.diaz.dominio.testdatabuilder.Progr
 public class ProgramarTest {
 
 	@Test
-	public void validarNombreObligatorio() {
+	public void validarUsuarioObligatorio() {
 		//Arrange
 		ProgramarTestDataBuilder peliculaTestDataBuilder = new ProgramarTestDataBuilder();
 		peliculaTestDataBuilder.conIdUsuario(null);
 		//Act - Assert
-		BasePrueba.assertThrows(() -> peliculaTestDataBuilder.build(),ExcepcionValorObligatorio.class,"El usuario es obligatorio.");
+		BasePrueba.assertThrows(() -> peliculaTestDataBuilder.build(),ExcepcionValorObligatorio.class,"El Usuario se debe ingresar");
 	}
 	
 }
