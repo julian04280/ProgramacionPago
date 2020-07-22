@@ -4,19 +4,19 @@ pipeline {
     label 'Slave_Induccion'
   }
 
-  //Opciones específicas de Pipeline dentro del Pipeline
+  //Opciones especÃ­ficas de Pipeline dentro del Pipeline
   options {
     	buildDiscarder(logRotator(numToKeepStr: '3'))
  	disableConcurrentBuilds()
   }
 
-  //Una sección que define las herramientas “preinstaladas” en Jenkins
+  //Una secciÃ³n que define las herramientas â€œpreinstaladasâ€� en Jenkins
   tools {
-    jdk 'JDK14_Centos' //Preinstalada en la Configuración del Master
-    gradle 'Gradle4.5_Centos' //Preinstalada en la Configuración del Master
+    jdk 'JDK14_Centos' //Preinstalada en la ConfiguraciÃ³n del Master
+    gradle 'Gradle6.0.1_Centos' //Preinstalada en la ConfiguraciÃ³n del Master
   }
 
-  //Aquí comienzan los “items” del Pipeline
+  //AquÃ­ comienzan los â€œitemsâ€� del Pipeline
   stages{
     stage('Checkout') {
       steps{
@@ -28,7 +28,7 @@ pipeline {
 			gitTool: 'Default', 
 			submoduleCfg: [], 
 			userRemoteConfigs: [[credentialsId: 'GitHub_julian04280', 
-				url:'https://github.com/julian04280/Proyecto1Ceiba.git'
+				urlhttps://github.com/julian04280/ProgramacionPago.git'
 			]]
 		])
 
@@ -44,7 +44,7 @@ pipeline {
 
     stage('Static Code Analysis') {
       steps{
-        echo '------------>Análisis de código estático<------------'
+        echo '------------>AnÃ¡lisis de cÃ³digo estÃ¡tico<------------'
         withSonarQubeEnv('Sonar') {
 			sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
         }
