@@ -28,7 +28,7 @@ pipeline {
 			gitTool: 'Default', 
 			submoduleCfg: [], 
 			userRemoteConfigs: [[credentialsId: 'GitHub_julian04280', 
-				urlhttps://github.com/julian04280/ProgramacionPago.git'
+				url:'https://github.com/julian04280/ProgramacionPago.git'
 			]]
 		])
 
