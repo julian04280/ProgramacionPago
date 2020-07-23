@@ -8,7 +8,7 @@ buildscript {
 }
 
 plugins {
-	id 'org.springframework.boot' version '2.3.1.RELEASE'
+	id 'org.springframework.boot' version '2.0.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'org.asciidoctor.convert' version '1.5.8'
 	id 'java'
@@ -17,7 +17,7 @@ plugins {
 	id 'war'
 }
 
-group = 'co.com.cliente.ProgramacionPago.julian.diaz'
+group = 'co.com.ceiba.julian.diaz'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -36,8 +36,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+	
+	runtimeOnly 'com.h2database:h2:1.0.60'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'junit:junit:4.12'
