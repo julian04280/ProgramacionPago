@@ -21,7 +21,7 @@ public class DaoProgramarEnMemoria implements DaoProgramar {
 
 	@Override
 	public Collection<DtoProgramar> listar() {
-		return jdbcTemplate.query("SELECT VALOR,ID_USUARIO,FECHA_INGRESO,FECHA_PROGRAMADA,HORA_PROGRAMADA FROM PROGRAMAR", new CustomerRowMapper());
+		return jdbcTemplate.query("SELECT VALOR,ID_USUARIO,FECHA_INGRESO,FECHA_PROGRAMADA,HORA_PROGRAMADA FROM PROGRAMAR ORDER BY ID", new CustomerRowMapper());
 	}
 	
 	public class CustomerRowMapper implements RowMapper<DtoProgramar> {
