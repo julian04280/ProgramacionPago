@@ -16,4 +16,10 @@ public interface RepositorioProgramar {
 	 * @return si existe o no
 	 */
 	boolean existe(Programar programar);
+	
+	/**
+	 * Permite borrar la programacion pago
+	 * @param programar
+	 */
+	void borrar(Programar programar);
 }

@@ -21,7 +21,7 @@ public class RepositorioProgramarEnMemoria implements RepositorioProgramar {
 		
         jdbcTemplate.update(" INSERT INTO PROGRAMAR (VALOR,ID_USUARIO,FECHA_INGRESO,FECHA_PROGRAMADA,HORA_PROGRAMADA)"
 				+ " VALUES (?,?,?,?,?)",params);
-		
+        		
 	}
 
 	@Override
@@ -38,6 +38,20 @@ public class RepositorioProgramarEnMemoria implements RepositorioProgramar {
 				programar.getFechaProgramada(),programar.getHoraProgramada()};
 		
 		return jdbcTemplate.queryForObject(sql,Boolean.class,params).booleanValue();
+		
+	}
+	
+	@Override
+	public void borrar(Programar programar) {
+		
+		Object[] params = new Object[] { programar.getValor(), programar.getIdUsuario(),
+				programar.getFechaProgramada(),programar.getHoraProgramada()};
+		
+        jdbcTemplate.update(" DELETE PROGRAMAR WHERE "
+        		+ "VALOR = ? "
+        		+ "AND ID_USUARIO = ? "
+        		+ "AND FECHA_PROGRAMADA = ? "
+        		+ "AND HORA_PROGRAMADA = ? ",params);
 		
 	}
 }

@@ -11,18 +11,17 @@ import co.com.ceiba.julian.diaz.dominio.testdatabuilder.ProgramarTestDataBuilder
 
 
 
-public class ServicioCrearProgramarTest {
+public class ServicioBorrarProgramarTest {
 
 	@Test
 	public void validarExistenciaPrevia() {
 		//Arrange
 		Programar programar = new ProgramarTestDataBuilder().build();
 		RepositorioProgramar repositorioProgramar = Mockito.mock(RepositorioProgramar.class);
-		Mockito.when(repositorioProgramar.existe(Mockito.any())).thenReturn(true);
+		Mockito.when(repositorioProgramar.existe(Mockito.any())).thenReturn(false);
 		//Act
-		ServicioCrearProgramar servicioCrearProgramar = new ServicioCrearProgramar(repositorioProgramar);
+		ServicioBorrarProgramar servicioBorrarProgramar= new ServicioBorrarProgramar(repositorioProgramar);
 		//Assert
-		BasePrueba.assertThrows(() -> servicioCrearProgramar.ejecutar(programar), ExcepcionDuplicidad.class,"El pago programado ya existe en el sistema");
+		BasePrueba.assertThrows(() -> servicioBorrarProgramar.ejecutar(programar), ExcepcionDuplicidad.class,"El pago programado NO existe en el sistema");
 	}
-	
 }

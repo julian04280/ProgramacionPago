@@ -3,6 +3,8 @@ package co.com.ceiba.julian.diaz.infraestructura.controlador;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.text.SimpleDateFormat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,25 @@ public class ComandoControladorProgramadorTest {
 
         // act - assert
         mocMvc.perform(post("/privada/programar/crear-pago")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(comandoProgramar)))
+        		.andExpect(status().isOk());
+        
+        //Eliminar 
+    }
+	
+	@Test
+    public void borrar() throws Exception{
+        // arrange
+		ComandoProgramarTestDataBuilder comandoProgramarBuilder = new ComandoProgramarTestDataBuilder();
+        		comandoProgramarBuilder.conIdUsuario("1019136385");
+        		comandoProgramarBuilder.conFechaProgramada(new SimpleDateFormat("yyyy-MM-dd").parse("2020-08-01"));
+        		comandoProgramarBuilder.conHoraProgramada("14:16:40");
+        		comandoProgramarBuilder.conValor(50.0);
+        		
+		ComandoProgramar comandoProgramar = comandoProgramarBuilder.build();
+        // act - assert
+        mocMvc.perform(post("/privada/programar/borrar-pago")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoProgramar)))
         		.andExpect(status().isOk());
