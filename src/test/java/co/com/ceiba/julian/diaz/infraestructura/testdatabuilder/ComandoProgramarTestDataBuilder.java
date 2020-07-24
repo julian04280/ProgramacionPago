@@ -1,36 +1,34 @@
 package co.com.ceiba.julian.diaz.infraestructura.testdatabuilder;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import co.com.ceiba.julian.diaz.aplicacion.comando.ComandoProgramar;
 
 public class ComandoProgramarTestDataBuilder {
 
 	private Double valor;
+	private String nombre;
     private String idUsuario;
-	private Date fechaIngreso;
-	private Date fechaProgramada;
+	private String fechaIngreso;
+	private String fechaProgramada;
 	private String horaProgramada;
 	
 	public ComandoProgramarTestDataBuilder() {
 		
 		this.valor = 50.0;
+		this.nombre = "Servicio Agua";
 		this.idUsuario = "1018463059";
-		try {
-			this.fechaIngreso = new SimpleDateFormat("yyyy-MM-dd").parse("2020-07-22");
-			this.fechaProgramada = new SimpleDateFormat("yyyy-MM-dd").parse("2020-08-03");
-		} catch (ParseException e) {
-			this.fechaIngreso = new Date();
-			this.fechaProgramada = new Date();
-		}  
-		  
+		this.fechaIngreso = "2020-07-22";
+		this.fechaProgramada = "2020-08-03";
 		this.horaProgramada = "16:25:10";
+		
 	}
 	
 	public ComandoProgramarTestDataBuilder conValor(Double valor) {
 		this.valor = valor;
+		return this;
+	}
+	
+	public ComandoProgramarTestDataBuilder conNombre(String nombre) {
+		this.nombre = nombre;
 		return this;
 	}
 	
@@ -39,12 +37,12 @@ public class ComandoProgramarTestDataBuilder {
 		return this;
 	}
 	
-	public ComandoProgramarTestDataBuilder conFechaIngreso(Date fechaIngreso) {
+	public ComandoProgramarTestDataBuilder conFechaIngreso(String fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 		return this;
 	}
 	
-	public ComandoProgramarTestDataBuilder conFechaProgramada(Date fechaProgramada) {
+	public ComandoProgramarTestDataBuilder conFechaProgramada(String fechaProgramada) {
 		this.fechaProgramada = fechaProgramada;
 		return this;
 	}
@@ -55,6 +53,6 @@ public class ComandoProgramarTestDataBuilder {
 	}
 	
 	public ComandoProgramar build() {
-		return new ComandoProgramar(valor, idUsuario, fechaIngreso, fechaProgramada, horaProgramada);
+		return new ComandoProgramar(valor, nombre, idUsuario, fechaIngreso, fechaProgramada, horaProgramada);
 	}
 }

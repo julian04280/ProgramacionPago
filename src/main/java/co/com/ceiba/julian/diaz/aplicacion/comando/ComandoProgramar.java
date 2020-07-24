@@ -1,23 +1,23 @@
 package co.com.ceiba.julian.diaz.aplicacion.comando;
 
-import java.util.Date;
-
 public class ComandoProgramar {
 
 	private Double valor;
+	private String nombre;
     private String idUsuario;
-	private Date fechaIngreso;
-	private Date fechaProgramada;
+	private String fechaIngreso;
+	private String fechaProgramada;
 	private String horaProgramada;
 	
 	public ComandoProgramar() {
 		super();
 	}
-	public ComandoProgramar(Double valor, String idUsuario, Date fechaIngreso, Date fechaProgramada,
+	public ComandoProgramar(Double valor, String nombre, String idUsuario, String fechaIngreso, String fechaProgramada,
 			String horaProgramada) {
 		
 		super();
 		this.valor = valor;
+		this.nombre = nombre;
 		this.idUsuario = idUsuario;
 		this.fechaIngreso = fechaIngreso;
 		this.fechaProgramada = fechaProgramada;
@@ -28,15 +28,18 @@ public class ComandoProgramar {
 		return valor;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
 	public String getIdUsuario() {
 		return idUsuario;
 	}
 
-	public Date getFechaIngreso() {
+	public String getFechaIngreso() {
 		return fechaIngreso;
 	}
 
-	public Date getFechaProgramada() {
+	public String getFechaProgramada() {
 		return fechaProgramada;
 	}
 

@@ -16,11 +16,11 @@ public class RepositorioProgramarEnMemoria implements RepositorioProgramar {
 	@Override
 	public void crear(Programar programar) {
 		
-		Object[] params = new Object[] { programar.getValor(), programar.getIdUsuario(), programar.getFechaIngreso(),
+		Object[] params = new Object[] { programar.getValor(), programar.getNombre(), programar.getIdUsuario(), programar.getFechaIngreso(),
 				programar.getFechaProgramada(),programar.getHoraProgramada()};
 		
-        jdbcTemplate.update(" INSERT INTO PROGRAMAR (VALOR,ID_USUARIO,FECHA_INGRESO,FECHA_PROGRAMADA,HORA_PROGRAMADA)"
-				+ " VALUES (?,?,?,?,?)",params);
+        jdbcTemplate.update(" INSERT INTO PROGRAMAR (VALOR,NOMBRE,ID_USUARIO,FECHA_INGRESO,FECHA_PROGRAMADA,HORA_PROGRAMADA)"
+				+ " VALUES (?,?,?,?,?,?)",params);
         		
 	}
 
@@ -29,13 +29,10 @@ public class RepositorioProgramarEnMemoria implements RepositorioProgramar {
 		
 		String sql = " SELECT COUNT(*) "
 				+ " FROM PROGRAMAR "
-				+ " WHERE ID_USUARIO = ? "
-				+ " AND VALOR = ? "
-				+ " AND FECHA_PROGRAMADA = ? "
-				+ " AND HORA_PROGRAMADA = ? ";
+				+ " WHERE NOMBRE = ? "
+				+ " AND ID_USUARIO = ?";
 
-		Object[] params = new Object[] { programar.getIdUsuario(), programar.getValor(),
-				programar.getFechaProgramada(),programar.getHoraProgramada()};
+		Object[] params = new Object[] { programar.getNombre(),programar.getIdUsuario()};
 		
 		return jdbcTemplate.queryForObject(sql,Boolean.class,params).booleanValue();
 		
@@ -44,14 +41,26 @@ public class RepositorioProgramarEnMemoria implements RepositorioProgramar {
 	@Override
 	public void borrar(Programar programar) {
 		
-		Object[] params = new Object[] { programar.getValor(), programar.getIdUsuario(),
-				programar.getFechaProgramada(),programar.getHoraProgramada()};
+		Object[] params = new Object[] { programar.getNombre(), programar.getIdUsuario()};
 		
         jdbcTemplate.update(" DELETE PROGRAMAR WHERE "
-        		+ "VALOR = ? "
-        		+ "AND ID_USUARIO = ? "
-        		+ "AND FECHA_PROGRAMADA = ? "
-        		+ "AND HORA_PROGRAMADA = ? ",params);
+        		+ " NOMBRE = ? "
+				+ " AND ID_USUARIO = ?",params);
+		
+	}
+	
+	@Override
+	public void modificar(Programar programar) {
+		
+		Object[] params = new Object[] { programar.getNombre(), programar.getIdUsuario()};
+		
+        jdbcTemplate.update(" UPDATE PROGRAMAR "
+        		+ "SET VALOR = ? ,"
+        		+ "FECHA_PROGRAMADA = ? "
+        		+ "HORA_PROGRAMADA = ? "
+        		+ "WHERE "
+        		+ "NOMBRE = ? "
+        		+ "AND ID_USUARIO = ? ",params);
 		
 	}
 }

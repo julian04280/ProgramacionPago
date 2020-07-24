@@ -5,6 +5,7 @@ import java.util.Date;
 public class DtoProgramar {
 	
 	private Double valor;
+	private String nombre;
     private String idUsuario;
 	private Date fechaIngreso;
 	private Date fechaProgramada;
@@ -15,6 +16,12 @@ public class DtoProgramar {
 	}
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	public String getIdUsuario() {
 		return idUsuario;

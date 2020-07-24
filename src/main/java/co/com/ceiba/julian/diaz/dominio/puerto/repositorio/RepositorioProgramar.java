@@ -22,4 +22,10 @@ public interface RepositorioProgramar {
 	 * @param programar
 	 */
 	void borrar(Programar programar);
+	
+	/**
+	 * Permite Modificar la programacion pago
+	 * @param programar
+	 */
+	void modificar(Programar programar);
 }

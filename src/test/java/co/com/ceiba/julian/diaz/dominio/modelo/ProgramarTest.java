@@ -2,8 +2,6 @@ package co.com.ceiba.julian.diaz.dominio.modelo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.text.SimpleDateFormat;
-
 import org.junit.Test;
 
 import co.com.ceiba.julian.diaz.dominio.BasePrueba;
@@ -29,7 +27,7 @@ public class ProgramarTest {
 		ProgramarTestDataBuilder programarTestDataBuilder = new ProgramarTestDataBuilder();
 		programarTestDataBuilder.conFechaProgramada(null);
 		//Act - Assert
-		BasePrueba.assertThrows(() -> programarTestDataBuilder.build(),ExcepcionValorObligatorio.class,"La fecha de programación de pago se debe ingresar");
+		BasePrueba.assertThrows(() -> programarTestDataBuilder.build(),ExcepcionValorObligatorio.class,"La fecha de programacion de pago se debe ingresar");
 	}
 	
 	@Test
@@ -38,7 +36,7 @@ public class ProgramarTest {
 		ProgramarTestDataBuilder programarTestDataBuilder = new ProgramarTestDataBuilder();
 		programarTestDataBuilder.conHoraProgramada(null);
 		//Act - Assert
-		BasePrueba.assertThrows(() -> programarTestDataBuilder.build(),ExcepcionValorObligatorio.class,"La hora de programación de pago se debe ingresar");
+		BasePrueba.assertThrows(() -> programarTestDataBuilder.build(),ExcepcionValorObligatorio.class,"La hora de programacion de pago se debe ingresar");
 	}
 	
 	@Test
@@ -54,31 +52,31 @@ public class ProgramarTest {
 	public void validarFechaProgramadaSabado() throws Exception {
 		//Arrange
 		ProgramarTestDataBuilder programarTestDataBuilder = new ProgramarTestDataBuilder();
-		programarTestDataBuilder.conFechaProgramada(new SimpleDateFormat("yyyy-MM-dd").parse("2020-08-01"));
+		programarTestDataBuilder.conFechaProgramada("2020-08-01");
 		
 		//Act 
 		Programar programar = programarTestDataBuilder.build();
 		//Assert
-		assertThat(programar.getFechaProgramada()).isEqualTo(new SimpleDateFormat("yyyy-MM-dd").parse("2020-08-03"));
+		assertThat(programar.getFechaProgramada()).isEqualTo("2020-08-03");
 	}
 	
 	@Test
 	public void validarFechaProgramadaDomingo() throws Exception {
 		//Arrange
 		ProgramarTestDataBuilder programarTestDataBuilder = new ProgramarTestDataBuilder();
-		programarTestDataBuilder.conFechaProgramada(new SimpleDateFormat("yyyy-MM-dd").parse("2020-08-02"));
+		programarTestDataBuilder.conFechaProgramada("2020-08-02");
 		
 		//Act 
 		Programar programar = programarTestDataBuilder.build();
 		//Assert
-		assertThat(programar.getFechaProgramada()).isEqualTo(new SimpleDateFormat("yyyy-MM-dd").parse("2020-08-03"));
+		assertThat(programar.getFechaProgramada()).isEqualTo("2020-08-03");
 	}
 	
 	@Test
-	public void validarFechaProgramadaFestivo() throws Exception {
+	public void validarFechaProgramadaFestivo() {
 		//Arrange
 		ProgramarTestDataBuilder programarTestDataBuilder = new ProgramarTestDataBuilder();
-		programarTestDataBuilder.conFechaProgramada(new SimpleDateFormat("yyyy-MM-dd").parse("2020-08-07"));
+		programarTestDataBuilder.conFechaProgramada("2020-08-07");
 		
 		//Act 
 		Programar programar = programarTestDataBuilder.build();

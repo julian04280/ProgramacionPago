@@ -3,7 +3,7 @@ package co.com.ceiba.julian.diaz.dominio.modelo.entidad;
 import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionHora;
 import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionValorObligatorio;
 
-public class ValidadorProgramar {
+public final class ValidadorProgramar {
 	
 	private ValidadorProgramar() {}
 
