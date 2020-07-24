@@ -24,7 +24,6 @@ import co.com.ceiba.julian.diaz.aplicacion.comando.ComandoProgramar;
 @AutoConfigureMockMvc
 public class ComandoControladorProgramadorTest {
 
-	
 	@Autowired
     private ObjectMapper objectMapper;
 
@@ -42,7 +41,6 @@ public class ComandoControladorProgramadorTest {
                 .content(objectMapper.writeValueAsString(comandoProgramar)))
         		.andExpect(status().isOk());
         
-        //Eliminar 
     }
 	
 	@Test
@@ -61,6 +59,5 @@ public class ComandoControladorProgramadorTest {
                 .content(objectMapper.writeValueAsString(comandoProgramar)))
         		.andExpect(status().isOk());
         
-        //Eliminar 
     }
 }

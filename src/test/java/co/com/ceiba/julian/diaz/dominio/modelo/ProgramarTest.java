@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import org.junit.Test;
 
 import co.com.ceiba.julian.diaz.dominio.BasePrueba;
+import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionHora;
 import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionValorObligatorio;
 import co.com.ceiba.julian.diaz.dominio.modelo.entidad.Programar;
 import co.com.ceiba.julian.diaz.dominio.testdatabuilder.ProgramarTestDataBuilder;
@@ -83,6 +84,15 @@ public class ProgramarTest {
 		Programar programar = programarTestDataBuilder.build();
 		//Assert
 		assertThat(programar.getCostoTransaccion()).isEqualTo(1.0);
+	}
+	
+	@Test
+	public void validarIntervaloHora() {
+		//Arrange
+		ProgramarTestDataBuilder programarTestDataBuilder = new ProgramarTestDataBuilder();
+		programarTestDataBuilder.conHoraProgramada("07:50:30");
+		//Act - Assert
+		BasePrueba.assertThrows(() -> programarTestDataBuilder.build(),ExcepcionHora.class,"El valor de la hora debe estar entre las 8am y 17pm");
 	}
 	
 }

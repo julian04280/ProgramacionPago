@@ -16,6 +16,7 @@ public class Programar {
 	private static final String HORA_PROGRAMADA_OBLIGATORIA = "La hora de programación de pago se debe ingresar";
 	private static final String VALOR_A_PAGAR_OBLIGATORIO = "El valor a pagar se debe ingresar";
 	private static final String CONVERTIR_FECHA = "El valor de la fecha no se puede convertir";
+	private static final String HORA_PROGRAMDA_VALIDA = "El valor de la hora debe estar entre las 8am y 17pm";
 	
     private Double valor;
     private String idUsuario;
@@ -34,6 +35,9 @@ public class Programar {
 		fechaProgramada = this.actualizarFechaProgramadaParaLunes(fechaProgramada);
 		
 		this.costoTransaccion = this.calcularCostoTransaccion(valor,diasFestivos().contains(fechaProgramada));
+		
+		ValidadorProgramar.validarHora(horaProgramada, HORA_PROGRAMDA_VALIDA);
+		
 		this.valor = valor;
 		this.idUsuario = idUsuario;
 		this.fechaIngreso = fechaIngreso;
