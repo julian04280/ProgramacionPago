@@ -16,9 +16,7 @@ import co.com.ceiba.julian.diaz.dominio.puerto.dao.DaoProgramar;
 
 @Repository
 public class DaoProgramarEnMemoria implements DaoProgramar {
-	
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
+		
 	@Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -41,6 +39,8 @@ public class DaoProgramarEnMemoria implements DaoProgramar {
 	    @Override
 	    public DtoProgramar mapRow(ResultSet rs, int rowNum) throws SQLException {
 
+	    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    	
 	    	DtoProgramar dtoProgramar = new DtoProgramar();
 	    	dtoProgramar.setValor(rs.getDouble("VALOR"));
 	    	dtoProgramar.setNombre(rs.getString("NOMBRE"));
