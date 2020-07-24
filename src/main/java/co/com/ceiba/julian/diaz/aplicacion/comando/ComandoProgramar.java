@@ -10,14 +10,9 @@ public class ComandoProgramar {
 	private Date fechaProgramada;
 	private String horaProgramada;
 	
-	public ComandoProgramar() {
-		super();
-	}
-
 	public ComandoProgramar(Double valor, String idUsuario, Date fechaIngreso, Date fechaProgramada,
 			String horaProgramada) {
 		
-		super();
 		this.valor = valor;
 		this.idUsuario = idUsuario;
 		this.fechaIngreso = fechaIngreso;
