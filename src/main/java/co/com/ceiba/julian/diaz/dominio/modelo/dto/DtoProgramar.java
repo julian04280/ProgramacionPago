@@ -1,14 +1,12 @@
 package co.com.ceiba.julian.diaz.dominio.modelo.dto;
 
-import java.util.Date;
-
 public class DtoProgramar {
 	
 	private Double valor;
 	private String nombre;
     private String idUsuario;
-	private Date fechaIngreso;
-	private Date fechaProgramada;
+	private String fechaIngreso;
+	private String fechaProgramada;
 	private String horaProgramada;
 	
 	public Double getValor() {
@@ -29,16 +27,16 @@ public class DtoProgramar {
 	public void setIdUsuario(String idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	public Date getFechaIngreso() {
+	public String getFechaIngreso() {
 		return fechaIngreso;
 	}
-	public void setFechaIngreso(Date fechaIngreso) {
+	public void setFechaIngreso(String fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
-	public Date getFechaProgramada() {
+	public String getFechaProgramada() {
 		return fechaProgramada;
 	}
-	public void setFechaProgramada(Date fechaProgramada) {
+	public void setFechaProgramada(String fechaProgramada) {
 		this.fechaProgramada = fechaProgramada;
 	}
 	public String getHoraProgramada() {
