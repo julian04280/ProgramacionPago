@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionFecha;
@@ -75,52 +74,40 @@ public class Programar {
        
     }
 	
-	private List<Date> diasFestivos(){
+	private List<String> diasFestivos(){
 		
-		List<Date> diasFestivos = new ArrayList<>();
-		
-		try {
+		List<String> diasFestivos = new ArrayList<>();
 			
-			diasFestivos.add(sdf.parse("2020-01-01"));
-			diasFestivos.add(sdf.parse("2020-01-06"));
-			diasFestivos.add(sdf.parse("2020-03-23"));
-			diasFestivos.add(sdf.parse("2020-04-09"));
-			diasFestivos.add(sdf.parse("2020-04-10"));
-			diasFestivos.add(sdf.parse("2020-05-01"));
-			diasFestivos.add(sdf.parse("2020-05-25"));
-			diasFestivos.add(sdf.parse("2020-06-15"));
-			diasFestivos.add(sdf.parse("2020-06-22"));
-			diasFestivos.add(sdf.parse("2020-06-29"));
-			diasFestivos.add(sdf.parse("2020-07-20"));
-			diasFestivos.add(sdf.parse("2020-08-07"));
-			diasFestivos.add(sdf.parse("2020-08-17"));
-			diasFestivos.add(sdf.parse("2020-10-12"));
-			diasFestivos.add(sdf.parse("2020-11-02"));
-			diasFestivos.add(sdf.parse("2020-11-16"));
-			diasFestivos.add(sdf.parse("2020-12-08"));
-			diasFestivos.add(sdf.parse("2020-12-25"));
-			
-		} catch (ParseException e) {
-			throw new ExcepcionFecha(CONVERTIR_FECHA);
-		}
+		diasFestivos.add("2020-01-01");
+		diasFestivos.add("2020-01-06");
+		diasFestivos.add("2020-03-23");
+		diasFestivos.add("2020-04-09");
+		diasFestivos.add("2020-04-10");
+		diasFestivos.add("2020-05-01");
+		diasFestivos.add("2020-05-25");
+		diasFestivos.add("2020-06-15");
+		diasFestivos.add("2020-06-22");
+		diasFestivos.add("2020-06-29");
+		diasFestivos.add("2020-07-20");
+		diasFestivos.add("2020-08-07");
+		diasFestivos.add("2020-08-17");
+		diasFestivos.add("2020-10-12");
+		diasFestivos.add("2020-11-02");
+		diasFestivos.add("2020-11-16");
+		diasFestivos.add("2020-12-08");
+		diasFestivos.add("2020-12-25");
 		
 		return diasFestivos;
 	}
     
     private Double calcularCostoTransaccion(Double valor,String fechaProgramada) {
-    	
-    	try {
     		
-    		if(diasFestivos().contains(sdf.parse(fechaProgramada))){
-        		valor = valor*0.02;
-        	}else {
-        		valor = valor*0.01;
-        	}
-    		
-    	} catch (ParseException e) {
-			throw new ExcepcionFecha(CONVERTIR_FECHA);
-		}
-
+		if(diasFestivos().contains(fechaProgramada)){
+    		valor = valor*0.02;
+    	}else {
+    		valor = valor*0.01;
+    	}
+    
         return valor;
     }
 

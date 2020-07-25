@@ -17,10 +17,10 @@ public class RepositorioProgramarEnMemoria implements RepositorioProgramar {
 	public void crear(Programar programar) {
 		
 		Object[] params = new Object[] { programar.getValor(), programar.getNombre(), programar.getIdUsuario(), programar.getFechaIngreso(),
-				programar.getFechaProgramada(),programar.getHoraProgramada()};
+				programar.getFechaProgramada(),programar.getHoraProgramada(),programar.getCostoTransaccion()};
 		
-        jdbcTemplate.update(" INSERT INTO PROGRAMAR (VALOR,NOMBRE,ID_USUARIO,FECHA_INGRESO,FECHA_PROGRAMADA,HORA_PROGRAMADA)"
-				+ " VALUES (?,?,?,?,?,?)",params);
+        jdbcTemplate.update(" INSERT INTO PROGRAMAR (VALOR,NOMBRE,ID_USUARIO,FECHA_INGRESO,FECHA_PROGRAMADA,HORA_PROGRAMADA,COSTO_TRANSACCION)"
+				+ " VALUES (?,?,?,?,?,?,?)",params);
         		
 	}
 
@@ -52,12 +52,15 @@ public class RepositorioProgramarEnMemoria implements RepositorioProgramar {
 	@Override
 	public void modificar(Programar programar) {
 		
-		Object[] params = new Object[] { programar.getNombre(), programar.getIdUsuario()};
+		Object[] params = new Object[] { programar.getValor(),programar.getFechaProgramada(),
+				programar.getHoraProgramada(),programar.getCostoTransaccion(),
+				programar.getNombre(), programar.getIdUsuario()};
 		
         jdbcTemplate.update(" UPDATE PROGRAMAR "
         		+ "SET VALOR = ? ,"
-        		+ "FECHA_PROGRAMADA = ? "
-        		+ "HORA_PROGRAMADA = ? "
+        		+ "FECHA_PROGRAMADA = ? ,"
+        		+ "HORA_PROGRAMADA = ? ,"
+        		+ "COSTO_TRANSACCION = ? "
         		+ "WHERE "
         		+ "NOMBRE = ? "
         		+ "AND ID_USUARIO = ? ",params);

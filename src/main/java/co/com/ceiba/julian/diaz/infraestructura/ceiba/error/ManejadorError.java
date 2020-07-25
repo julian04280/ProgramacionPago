@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionDuplicidad;
+import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionFecha;
+import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionHora;
 import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionValorObligatorio;
 
 
@@ -26,6 +28,8 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
     public ManejadorError() {
         CODIGOS_ESTADO.put(ExcepcionValorObligatorio.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         CODIGOS_ESTADO.put(ExcepcionDuplicidad.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        CODIGOS_ESTADO.put(ExcepcionFecha.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        CODIGOS_ESTADO.put(ExcepcionHora.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
     }
 
     @ExceptionHandler(Exception.class)

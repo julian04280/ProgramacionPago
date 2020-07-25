@@ -28,10 +28,10 @@ public class DaoProgramarEnMemoria implements DaoProgramar {
 	@Override
 	public Collection<DtoProgramar> buscarPagosProgramadosUsuario(Programar programar) {
 		
-		Object[] params = new Object[] {programar.getIdUsuario()};
+		Object[] params = new Object[] {programar.getNombre(), programar.getIdUsuario()};
 		
 		return jdbcTemplate.query("SELECT VALOR,NOMBRE,ID_USUARIO,FECHA_INGRESO,FECHA_PROGRAMADA,HORA_PROGRAMADA FROM PROGRAMAR"
-				+ "ID_USUARIO = ? ",params, new CustomerRowMapper());
+				+ " WHERE NOMBRE = ? AND ID_USUARIO = ? ",params, new CustomerRowMapper());
 	}
 	
 	public class CustomerRowMapper implements RowMapper<DtoProgramar> {

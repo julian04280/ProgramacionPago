@@ -47,6 +47,7 @@ public class ComandoControladorProgramadorTest {
 		ComandoProgramarTestDataBuilder comandoProgramarBuilder = new ComandoProgramarTestDataBuilder();
 				comandoProgramarBuilder.conNombre("Pago Impuestos");
         		comandoProgramarBuilder.conIdUsuario("1019136385");
+        		comandoProgramarBuilder.conFechaIngreso("2020-07-20");
         		comandoProgramarBuilder.conFechaProgramada("2020-08-01");
         		comandoProgramarBuilder.conHoraProgramada("14:16:40");
         		comandoProgramarBuilder.conValor(50.0);
@@ -54,6 +55,25 @@ public class ComandoControladorProgramadorTest {
 		ComandoProgramar comandoProgramar = comandoProgramarBuilder.build();
         // act - assert
         mocMvc.perform(post("/privada/programar/borrar-pago")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(comandoProgramar)))
+        		.andExpect(status().isOk());
+        
+    }
+	
+	@Test
+    public void modificar() throws Exception{
+        // arrange
+		ComandoProgramarTestDataBuilder comandoProgramarBuilder = new ComandoProgramarTestDataBuilder();
+				comandoProgramarBuilder.conNombre("Servicio Agua");
+        		comandoProgramarBuilder.conIdUsuario("51967755");
+        		comandoProgramarBuilder.conFechaProgramada("2020-08-03");
+        		comandoProgramarBuilder.conHoraProgramada("14:16:40");
+        		comandoProgramarBuilder.conValor(1000.0);
+        		
+		ComandoProgramar comandoProgramar = comandoProgramarBuilder.build();
+        // act - assert
+        mocMvc.perform(post("/privada/programar/modificar-pago")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoProgramar)))
         		.andExpect(status().isOk());

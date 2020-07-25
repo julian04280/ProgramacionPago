@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ceiba.julian.diaz.aplicacion.comando.manejador.ManejadorBorrarProgramar;
 import co.com.ceiba.julian.diaz.aplicacion.comando.manejador.ManejadorCrearProgramar;
+import co.com.ceiba.julian.diaz.aplicacion.comando.manejador.ManejadorModificarProgramar;
 import co.com.ceiba.julian.diaz.aplicacion.comando.ComandoProgramar;
 
 @RestController
@@ -16,11 +17,15 @@ public class ComandoControladorProgramador {
 
 	private final ManejadorCrearProgramar manejadorCrearProgramar;
 	private final ManejadorBorrarProgramar manejadorBorrarProgramar;
+	private final ManejadorModificarProgramar manejadorModificarProgramar;
 	
 	public ComandoControladorProgramador(ManejadorCrearProgramar manejadorCrearProgramar,
-			ManejadorBorrarProgramar manejadorBorrarProgramar) {
+			ManejadorBorrarProgramar manejadorBorrarProgramar,
+			ManejadorModificarProgramar manejadorModificarProgramar) {
+		
 		this.manejadorCrearProgramar = manejadorCrearProgramar;
-		this.manejadorBorrarProgramar = manejadorBorrarProgramar; 
+		this.manejadorBorrarProgramar = manejadorBorrarProgramar;
+		this.manejadorModificarProgramar = manejadorModificarProgramar;
 	}
 	
 	
@@ -32,6 +37,11 @@ public class ComandoControladorProgramador {
 	@PostMapping(value = "/borrar-pago")
 	public void borrar(@RequestBody ComandoProgramar comandoProgramar) {
 		this.manejadorBorrarProgramar.ejecutar(comandoProgramar);
+	}
+	
+	@PostMapping(value = "/modificar-pago")
+	public void modificar(@RequestBody ComandoProgramar comandoProgramar) {
+		this.manejadorModificarProgramar.ejecutar(comandoProgramar);
 	}
 	
 	
