@@ -17,6 +17,7 @@ plugins {
 	id 'jacoco'
 	id 'eclipse'
 	id 'war'
+	id 'org.sonarqube' version '3.0'
 }
 
 group = 'co.com.ceiba.julian.diaz'
@@ -52,6 +53,13 @@ dependencyManagement {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
 }
-test{
-	
-}
+
+jacocoTestReport {
+        group = "Reporting"
+        reports {
+            xml.enabled true
+            csv.enabled false
+            html.destination file("${buildDir}/reports/coverage")
+            xml.destination file("${buildDir}/reports/jacoco.xml")
+        }
+    }
