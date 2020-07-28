@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-07-27T16:02:10" hostname="JULIAN-DIAZ" time="0.245">
+  <properties/>
+  <testcase name="validarFechaProgramadaSabado" classname="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" time="0.198"/>
+  <testcase name="validarValorObligatorio" classname="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" time="0.015"/>
+  <testcase name="validarFechaProgramadaFestivo" classname="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" time="0.02"/>
+  <testcase name="validarFechaProgramadaInvalida" classname="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" time="0.002"/>
+  <testcase name="validarFechaProgramadaObligatorio" classname="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" time="0.001"/>
+  <testcase name="validarUsuarioObligatorio" classname="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" time="0.001"/>
+  <testcase name="validarHoraProgramadaObligatorio" classname="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" time="0.001"/>
+  <testcase name="validarNombre" classname="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" time="0.001"/>
+  <testcase name="validarIntervaloHora" classname="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" time="0.001"/>
+  <testcase name="validarFechaProgramadaDomingo" classname="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" time="0.001"/>
+  <testcase name="validarFechaIngreso" classname="co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

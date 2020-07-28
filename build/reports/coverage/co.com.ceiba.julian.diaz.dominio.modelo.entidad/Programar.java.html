@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Programar.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">programacionPago</a> &gt; <a href="index.source.html" class="el_package">co.com.ceiba.julian.diaz.dominio.modelo.entidad</a> &gt; <span class="el_source">Programar.java</span></div><h1>Programar.java</h1><pre class="source lang-java linenums">package co.com.ceiba.julian.diaz.dominio.modelo.entidad;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionFecha;
+
+public class Programar {
+
+	private static final String NOMBRE_OBLIGATORIO = &quot;El Nombre se debe ingresar&quot;;
+	private static final String USUARIO_PROGRAMADA_OBLIGATORIA = &quot;El Usuario se debe ingresar&quot;;
+	private static final String FECHA_PROGRAMADA_OBLIGATORIA = &quot;La fecha de programacion de pago se debe ingresar&quot;;
+	private static final String HORA_PROGRAMADA_OBLIGATORIA = &quot;La hora de programacion de pago se debe ingresar&quot;;
+	private static final String VALOR_A_PAGAR_OBLIGATORIO = &quot;El valor a pagar se debe ingresar&quot;;
+	private static final String CONVERTIR_FECHA = &quot;El valor de la fecha no se puede convertir&quot;;
+	private static final String HORA_PROGRAMDA_VALIDA = &quot;El valor de la hora debe estar entre las 8am y 17pm&quot;;
+	
+<span class="fc" id="L21">	private SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+	
+    private Double valor;
+    private String nombre;
+    private String idUsuario;
+	private String fechaIngreso;
+	private String fechaProgramada;
+	private String horaProgramada;
+	private Double costoTransaccion;
+	
+<span class="fc" id="L31">	public Programar(Double valor,String nombre,String idUsuario, String fechaIngreso, String fechaProgramada,String horaProgramada){</span>
+		
+<span class="fc" id="L33">		ValidadorProgramar.validarObligatorio(nombre, NOMBRE_OBLIGATORIO);</span>
+<span class="fc" id="L34">		ValidadorProgramar.validarObligatorio(idUsuario, USUARIO_PROGRAMADA_OBLIGATORIA);</span>
+<span class="fc" id="L35">		ValidadorProgramar.validarObligatorio(fechaProgramada, FECHA_PROGRAMADA_OBLIGATORIA);</span>
+<span class="fc" id="L36">		ValidadorProgramar.validarObligatorio(horaProgramada, HORA_PROGRAMADA_OBLIGATORIA);</span>
+<span class="fc" id="L37">		ValidadorProgramar.validarObligatorio(valor, VALOR_A_PAGAR_OBLIGATORIO);</span>
+		
+<span class="fc" id="L39">		fechaProgramada = this.actualizarFechaProgramadaParaLunes(fechaProgramada);</span>
+		
+<span class="fc" id="L41">		this.costoTransaccion = this.calcularCostoTransaccion(valor,fechaProgramada);</span>
+		
+<span class="fc" id="L43">		ValidadorProgramar.validarHora(horaProgramada, HORA_PROGRAMDA_VALIDA);</span>
+		
+<span class="fc" id="L45">		this.valor = valor;</span>
+<span class="fc" id="L46">		this.nombre = nombre;</span>
+<span class="fc" id="L47">		this.idUsuario = idUsuario;</span>
+<span class="fc" id="L48">		this.fechaIngreso = fechaIngreso;</span>
+<span class="fc" id="L49">		this.fechaProgramada = fechaProgramada;</span>
+<span class="fc" id="L50">		this.horaProgramada = horaProgramada;</span>
+<span class="fc" id="L51">	}</span>
+	
+	private String actualizarFechaProgramadaParaLunes(String fechaProgramada) {
+
+    	try {
+    		
+<span class="fc" id="L57">    		Calendar calendar = Calendar.getInstance();</span>
+			
+<span class="fc" id="L59">    		calendar.setTime(sdf.parse(fechaProgramada));</span>
+			
+<span class="fc bfc" id="L61" title="All 2 branches covered.">    		if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {</span>
+<span class="fc" id="L62">	    		calendar.add(Calendar.DAY_OF_YEAR, 2); </span>
+	    	}
+	    	
+<span class="fc bfc" id="L65" title="All 2 branches covered.">	    	if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {</span>
+<span class="fc" id="L66">	    		calendar.add(Calendar.DAY_OF_YEAR, 1); </span>
+	    	}
+	    	
+<span class="fc" id="L69">	    	return sdf.format(calendar.getTime());</span>
+	    	 
+<span class="fc" id="L71">		} catch (ParseException e) {</span>
+<span class="fc" id="L72">			throw new ExcepcionFecha(CONVERTIR_FECHA);</span>
+		}
+       
+    }
+	
+	private List&lt;String&gt; diasFestivos(){
+		
+<span class="fc" id="L79">		List&lt;String&gt; diasFestivos = new ArrayList&lt;&gt;();</span>
+			
+<span class="fc" id="L81">		diasFestivos.add(&quot;2020-01-01&quot;);</span>
+<span class="fc" id="L82">		diasFestivos.add(&quot;2020-01-06&quot;);</span>
+<span class="fc" id="L83">		diasFestivos.add(&quot;2020-03-23&quot;);</span>
+<span class="fc" id="L84">		diasFestivos.add(&quot;2020-04-09&quot;);</span>
+<span class="fc" id="L85">		diasFestivos.add(&quot;2020-04-10&quot;);</span>
+<span class="fc" id="L86">		diasFestivos.add(&quot;2020-05-01&quot;);</span>
+<span class="fc" id="L87">		diasFestivos.add(&quot;2020-05-25&quot;);</span>
+<span class="fc" id="L88">		diasFestivos.add(&quot;2020-06-15&quot;);</span>
+<span class="fc" id="L89">		diasFestivos.add(&quot;2020-06-22&quot;);</span>
+<span class="fc" id="L90">		diasFestivos.add(&quot;2020-06-29&quot;);</span>
+<span class="fc" id="L91">		diasFestivos.add(&quot;2020-07-20&quot;);</span>
+<span class="fc" id="L92">		diasFestivos.add(&quot;2020-08-07&quot;);</span>
+<span class="fc" id="L93">		diasFestivos.add(&quot;2020-08-17&quot;);</span>
+<span class="fc" id="L94">		diasFestivos.add(&quot;2020-10-12&quot;);</span>
+<span class="fc" id="L95">		diasFestivos.add(&quot;2020-11-02&quot;);</span>
+<span class="fc" id="L96">		diasFestivos.add(&quot;2020-11-16&quot;);</span>
+<span class="fc" id="L97">		diasFestivos.add(&quot;2020-12-08&quot;);</span>
+<span class="fc" id="L98">		diasFestivos.add(&quot;2020-12-25&quot;);</span>
+		
+<span class="fc" id="L100">		return diasFestivos;</span>
+	}
+    
+    private Double calcularCostoTransaccion(Double valor,String fechaProgramada) {
+    		
+<span class="fc bfc" id="L105" title="All 2 branches covered.">		if(diasFestivos().contains(fechaProgramada)){</span>
+<span class="fc" id="L106">    		valor = valor*0.02;</span>
+    	}else {
+<span class="fc" id="L108">    		valor = valor*0.01;</span>
+    	}
+    
+<span class="fc" id="L111">        return valor;</span>
+    }
+
+	public Double getValor() {
+<span class="fc" id="L115">		return valor;</span>
+	}
+
+	public String getNombre() {
+<span class="fc" id="L119">		return nombre;</span>
+	}
+	
+	public String getIdUsuario() {
+<span class="fc" id="L123">		return idUsuario;</span>
+	}
+
+	public String getFechaIngreso() {
+<span class="fc" id="L127">		return fechaIngreso;</span>
+	}
+
+	public String getFechaProgramada() {
+<span class="fc" id="L131">		return fechaProgramada;</span>
+	}
+
+	public String getHoraProgramada() {
+<span class="fc" id="L135">		return horaProgramada;</span>
+	}
+
+	public Double getCostoTransaccion() {
+<span class="fc" id="L139">		return costoTransaccion;</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

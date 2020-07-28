@@ -1,0 +1,19 @@
+co/com/ceiba/julian/diaz/dominio/servicio/ServicioBorrarProgramarTest.java
+ co.com.ceiba.julian.diaz.dominio.servicio.ServicioBorrarProgramarTest
+co/com/ceiba/julian/diaz/dominio/servicio/ServicioCrearProgramarTest.java
+ co.com.ceiba.julian.diaz.dominio.servicio.ServicioCrearProgramarTest
+co/com/ceiba/julian/diaz/infraestructura/controlador/ConsultaControladorProgramarTest.java
+ co.com.ceiba.julian.diaz.infraestructura.controlador.ConsultaControladorProgramarTest
+co/com/ceiba/julian/diaz/dominio/servicio/ServicioModificarProgramarTest.java
+ co.com.ceiba.julian.diaz.dominio.servicio.ServicioModificarProgramarTest
+co/com/ceiba/julian/diaz/dominio/BasePrueba.java
+ co.com.ceiba.julian.diaz.dominio.BasePrueba
+ co.com.ceiba.julian.diaz.dominio.BasePrueba$Thunk
+co/com/ceiba/julian/diaz/dominio/modelo/ProgramarTest.java
+ co.com.ceiba.julian.diaz.dominio.modelo.ProgramarTest
+co/com/ceiba/julian/diaz/infraestructura/controlador/ComandoControladorProgramadorTest.java
+ co.com.ceiba.julian.diaz.infraestructura.controlador.ComandoControladorProgramadorTest
+co/com/ceiba/julian/diaz/infraestructura/testdatabuilder/ComandoProgramarTestDataBuilder.java
+ co.com.ceiba.julian.diaz.infraestructura.testdatabuilder.ComandoProgramarTestDataBuilder
+co/com/ceiba/julian/diaz/dominio/testdatabuilder/ProgramarTestDataBuilder.java
+ co.com.ceiba.julian.diaz.dominio.testdatabuilder.ProgramarTestDataBuilder

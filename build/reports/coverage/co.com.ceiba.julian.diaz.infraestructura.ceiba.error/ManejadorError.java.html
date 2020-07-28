@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ManejadorError.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">programacionPago</a> &gt; <a href="index.source.html" class="el_package">co.com.ceiba.julian.diaz.infraestructura.ceiba.error</a> &gt; <span class="el_source">ManejadorError.java</span></div><h1>ManejadorError.java</h1><pre class="source lang-java linenums">package co.com.ceiba.julian.diaz.infraestructura.ceiba.error;
+
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionDuplicidad;
+import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionFecha;
+import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionHora;
+import co.com.ceiba.julian.diaz.dominio.excepcion.ExcepcionValorObligatorio;
+
+
+@ControllerAdvice
+public class ManejadorError extends ResponseEntityExceptionHandler {
+    
+<span class="fc" id="L22">    private static final Logger LOG = LoggerFactory.getLogger(ManejadorError.class);</span>
+
+    private static final String OCURRIO_UN_ERROR_FAVOR_CONTACTAR_AL_ADMINISTRADOR = &quot;OcurriÃ³ un error favor contactar al administrador.&quot;;
+
+<span class="fc" id="L26">    private static final ConcurrentHashMap&lt;String, Integer&gt; CODIGOS_ESTADO = new ConcurrentHashMap&lt;&gt;();</span>
+
+<span class="fc" id="L28">    public ManejadorError() {</span>
+<span class="fc" id="L29">        CODIGOS_ESTADO.put(ExcepcionValorObligatorio.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());</span>
+<span class="fc" id="L30">        CODIGOS_ESTADO.put(ExcepcionDuplicidad.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());</span>
+<span class="fc" id="L31">        CODIGOS_ESTADO.put(ExcepcionFecha.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());</span>
+<span class="fc" id="L32">        CODIGOS_ESTADO.put(ExcepcionHora.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());</span>
+<span class="fc" id="L33">    }</span>
+
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity&lt;Error&gt; handleAllExceptions(Exception exception) {
+        ResponseEntity&lt;Error&gt; resultado;
+
+<span class="nc" id="L39">        String excepcionNombre = exception.getClass().getSimpleName();</span>
+<span class="nc" id="L40">        String mensaje = exception.getMessage();</span>
+<span class="nc" id="L41">        Integer codigo = CODIGOS_ESTADO.get(excepcionNombre);</span>
+
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (codigo != null) {</span>
+<span class="nc" id="L44">            Error error = new Error(excepcionNombre, mensaje);</span>
+<span class="nc" id="L45">            resultado = new ResponseEntity&lt;&gt;(error, HttpStatus.valueOf(codigo));</span>
+<span class="nc" id="L46">        } else {</span>
+<span class="nc" id="L47">        	LOG.error(excepcionNombre, exception);</span>
+<span class="nc" id="L48">            Error error = new Error(excepcionNombre, OCURRIO_UN_ERROR_FAVOR_CONTACTAR_AL_ADMINISTRADOR);</span>
+<span class="nc" id="L49">            resultado = new ResponseEntity&lt;&gt;(error, HttpStatus.INTERNAL_SERVER_ERROR);</span>
+        }
+
+<span class="nc" id="L52">        return resultado;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

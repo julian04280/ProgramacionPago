@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConsultaControladorProgramar.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">programacionPago</a> &gt; <a href="index.source.html" class="el_package">co.com.ceiba.julian.diaz.infraestructura.ceiba.controlador</a> &gt; <span class="el_source">ConsultaControladorProgramar.java</span></div><h1>ConsultaControladorProgramar.java</h1><pre class="source lang-java linenums">package co.com.ceiba.julian.diaz.infraestructura.ceiba.controlador;
+
+import java.util.Collection;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import co.com.ceiba.julian.diaz.aplicacion.comando.ComandoProgramar;
+import co.com.ceiba.julian.diaz.aplicacion.consulta.manejador.ManejadorBuscarPagosUsuarioProgramar;
+import co.com.ceiba.julian.diaz.aplicacion.consulta.manejador.ManejadorListarProgramar;
+import co.com.ceiba.julian.diaz.dominio.modelo.dto.DtoProgramar;
+
+@RestController
+@RequestMapping(&quot;/privada/programar&quot;)
+
+public class ConsultaControladorProgramar {
+	
+	private final ManejadorListarProgramar manejadorListarProgramar;
+	private final ManejadorBuscarPagosUsuarioProgramar manejadorBuscarPagosUsuarioProgramar;
+	
+	public ConsultaControladorProgramar(ManejadorListarProgramar manejadorListarProgramar,
+<span class="fc" id="L25">			ManejadorBuscarPagosUsuarioProgramar manejadorBuscarPagosUsuarioProgramar) {</span>
+<span class="fc" id="L26">		this.manejadorListarProgramar = manejadorListarProgramar;</span>
+<span class="fc" id="L27">		this.manejadorBuscarPagosUsuarioProgramar = manejadorBuscarPagosUsuarioProgramar;</span>
+<span class="fc" id="L28">	}</span>
+
+	@GetMapping(value=&quot;/listar&quot;)
+	public Collection&lt;DtoProgramar&gt; listar() {
+<span class="fc" id="L32">		return this.manejadorListarProgramar.ejecutar();</span>
+	}
+	
+	@PostMapping(value=&quot;/buscar-pagos-usuario&quot;)
+	public Collection&lt;DtoProgramar&gt; buscarPagosUsuarioProgramar(@RequestBody ComandoProgramar comandoProgramar) {
+<span class="fc" id="L37">		return this.manejadorBuscarPagosUsuarioProgramar.ejecutar(comandoProgramar);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
