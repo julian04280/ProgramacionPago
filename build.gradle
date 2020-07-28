@@ -54,14 +54,16 @@ dependencyManagement {
 	}
 }
 
-build.dependsOn jacocoTestReport
-
 jacocoTestReport {
-        group = "Reporting"
-        reports {
-            xml.enabled true
-            csv.enabled false
-            html.destination file("${buildDir}/reports/coverage")
-            xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
-        }
-    }
+	group = "Reporting"
+	reports {
+		xml.enabled true
+		csv.enabled false
+		html.destination file("${buildDir}/reports/coverage")
+		xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+	}
+}
+
+test{
+	
+}
